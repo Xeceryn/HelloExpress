@@ -1,13 +1,18 @@
-var express = require('express'),
-    app = express(),
-    port = process.env.PORT || 5000,
-    bodyParser = require('body-parser');
+const express = require('express')
+const bodyParser = require('body-parser')
+const app = express()
+const routes = require('./routes')
+const port = 3000
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(bodyParser.json())
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+)
 
-var routes = require('./routes');
-routes(app);
+routes(app)
 
-app.listen(port);
-console.log(`[Service run on ${port}]`);
+app.listen(port, () => {
+  console.log(`[Service run on ${port}]`)
+})
